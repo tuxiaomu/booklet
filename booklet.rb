@@ -30,7 +30,7 @@ end
 File.open(launch_args[:output], 'w') do |file|
   file.write("number,name,discordId,location,quantity,type\n")
   models.each do |model|
-    quantity = model.quantityAndType.scan(/\d/).join('')
+    quantity = model.quantityAndType.scan(/\d[\.\d]*/).join('')
     type = model.quantityAndType.scan(/[a-zA-Z]/).join('')
     file.write "#{model.number.strip},#{model.name.strip},##{model.discordId.strip},#{model.location.strip},#{quantity},#{type}\n"
   end
